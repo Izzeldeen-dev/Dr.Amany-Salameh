@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Amany Salama - Psychological Counseling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #4f46e5;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+        }
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        .ltr {
+            direction: ltr;
+            text-align: left;
+        }
+        .language-toggle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+        }
+        .language-toggle button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .language-toggle button.active {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .language-toggle button:not(.active) {
+            color: #6b7280;
+        }
+        .hidden-lang {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-brain text-xl"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-800">Dr. Amany Salama</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="About" data-ar="عن الدكتورة">About</a>
+                <a href="#services" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="Services" data-ar="الخدمات">Services</a>
+                <a href="#pricing" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="Pricing" data-ar="الأسعار">Pricing</a>
+                <a href="#testimonials" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="Testimonials" data-ar="آراء العملاء">Testimonials</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-indigo-600 font-medium" data-en="Contact" data-ar="اتصل بنا">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="language-toggle">
+                    <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+                    <button id="lang-ar" onclick="switchLanguage('ar')">عربي</button>
+                </div>
+                <a href="#booking" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-2">
+                    <i class="fas fa-calendar-check"></i>
+                    <span data-en="Book Session" data-ar="احجز جلسة">Book Session</span>
+                </a>
+            </div>
+            <button class="md:hidden text-gray-600" id="menu-toggle">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden bg-white w-full px-4 py-2 shadow-lg" id="mobile-menu">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">Home</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">About</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">Services</a>
+            <a href="#pricing" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">Pricing</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">Testimonials</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-indigo-600 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient pt-32 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-6">
+                        <span data-en="Professional Psychological Counseling" data-ar="استشارات نفسية مهنية">Professional Psychological Counseling</span> <span class="text-indigo-600" data-en="Online" data-ar="أونلاين">Online</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-en="Dr. Amany Salama provides professional psychological counseling services to help you navigate life's challenges and improve your mental well-being." data-ar="تقدم الدكتورة أماني سلامة خدمات الاستشارة النفسية المهنية لمساعدتك في التعامل مع تحديات الحياة وتحسين صحتك النفسية.">
+                        Dr. Amany Salama provides professional psychological counseling services to help you navigate life's challenges and improve your mental well-being.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#booking" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition duration-300 flex items-center space-x-2">
+                            <i class="fas fa-calendar-check"></i>
+                            <span data-en="Book a Session" data-ar="احجز جلسة">Book a Session</span>
+                        </a>
+                        <a href="#about" class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium text-lg transition duration-300 flex items-center space-x-2">
+                            <i class="fas fa-user-md"></i>
+                            <span data-en="Learn More" data-ar="اعرف أكثر">Learn More</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-indigo-100 blob-shape w-80 h-80 md:w-96 md:h-96 flex items-center justify-center relative">
+                        <img src="./channels4_profile.jpg"
+                             alt="Dr. Amany Salama"
+                             class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white shadow-xl">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-lg">
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 p-2 rounded-full">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <span class="font-medium">10+ Years Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">500+</div>
+                    <div class="text-gray-600">Sessions</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">98%</div>
+                    <div class="text-gray-600">Satisfaction Rate</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">24/7</div>
+                    <div class="text-gray-600">Support</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">100%</div>
+                    <div class="text-gray-600">Confidential</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-en="About Dr. Amany Salama" data-ar="عن الدكتورة أماني سلامة">About Dr. Amany Salama</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+                    <img src="./Screenshot 2025-06-12 at 6.32.12 PM.png"
+                         alt="Dr. Amany Salama"
+                         class="w-full h-auto rounded-xl shadow-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-en="Licensed Psychologist & Counselor" data-ar="أخصائية نفسية ومستشارة معتمدة">Licensed Psychologist & Counselor</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed" data-en="Dr. Amany Salama is a highly experienced psychologist with over 10 years of practice in counseling and psychotherapy. She holds a Ph.D. in Clinical Psychology and is licensed to practice in multiple countries." data-ar="الدكتورة أماني سلامة هي أخصائية نفسية ذات خبرة عالية مع أكثر من 10 سنوات من الممارسة في الاستشارة والعلاج النفسي. تحمل درجة الدكتوراه في علم النفس الإكلينيكي ومرخصة للممارسة في عدة دول.">
+                        Dr. Amany Salama is a highly experienced psychologist with over 10 years of practice in counseling and psychotherapy. She holds a Ph.D. in Clinical Psychology and is licensed to practice in multiple countries.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed" data-en="Her approach combines evidence-based therapies with compassionate care, tailored to each individual's unique needs. She specializes in cognitive-behavioral therapy, mindfulness techniques, and solution-focused therapy." data-ar="يجمع نهجها بين العلاجات القائمة على الأدلة والرعاية الرحيمة، المصممة خصيصاً لتلبية احتياجات كل فرد الفريدة. تتخصص في العلاج المعرفي السلوكي وتقنيات اليقظة الذهنية والعلاج المركز على الحلول.">
+                        Her approach combines evidence-based therapies with compassionate care, tailored to each individual's unique needs. She specializes in cognitive-behavioral therapy, mindfulness techniques, and solution-focused therapy.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-graduation-cap text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800" data-en="Education" data-ar="التعليم">Education</h4>
+                                <p class="text-gray-600" data-en="Ph.D. in Clinical Psychology - Cairo University" data-ar="دكتوراه في علم النفس الإكلينيكي - جامعة القاهرة">Ph.D. in Clinical Psychology - Cairo University</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-award text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800" data-en="Certifications" data-ar="الشهادات">Certifications</h4>
+                                <p class="text-gray-600" data-en="Licensed Psychologist - Egyptian Psychological Association" data-ar="أخصائية نفسية معتمدة - الجمعية المصرية لعلم النفس">Licensed Psychologist - Egyptian Psychological Association</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-heart text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800" data-en="Approach" data-ar="المنهج">Approach</h4>
+                                <p class="text-gray-600" data-en="Client-centered, evidence-based, holistic care" data-ar="رعاية شاملة تركز على العميل وقائمة على الأدلة">Client-centered, evidence-based, holistic care</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#services" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition duration-300">
+                        <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="session-card bg-white rounded-xl p-8 shadow-md transition-all duration-300 hover:border-indigo-500 border border-transparent">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3" data-en="Individual Therapy" data-ar="العلاج الفردي">Individual Therapy</h3>
+                    <p class="text-gray-600 mb-5" data-en="One-on-one sessions tailored to your specific needs, helping you work through personal challenges and develop coping strategies." data-ar="جلسات فردية مصممة خصيصاً لاحتياجاتك، تساعدك في التعامل مع التحديات الشخصية وتطوير استراتيجيات التأقلم.">
+                        One-on-one sessions tailored to your specific needs, helping you work through personal challenges and develop coping strategies.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600" data-en="Personalized approach" data-ar="نهج شخصي">Personalized approach</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600" data-en="Confidential safe space" data-ar="مساحة آمنة وسرية">Confidential safe space</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600" data-en="45-60 minute sessions" data-ar="جلسات 45-60 دقيقة">45-60 minute sessions</span>
+                        </li>
+                    </ul>
+                    <a href="#booking" class="text-indigo-600 font-medium inline-flex items-center group">
+                        <span data-en="Book Now" data-ar="احجز الآن">Book Now</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-200"></i>
+                    </a>
+                </div>
+                <div class="session-card bg-white rounded-xl p-8 shadow-md transition-all duration-300 hover:border-indigo-500 border border-transparent">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Couples Counseling</h3>
+                    <p class="text-gray-600 mb-5">
+                        Improve communication, resolve conflicts, and strengthen your relationship with guided professional support.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Enhance communication</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Conflict resolution</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">60-75 minute sessions</span>
+                        </li>
+                    </ul>
+                    <a href="#booking" class="text-indigo-600 font-medium inline-flex items-center group">
+                        Book Now
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-200"></i>
+                    </a>
+                </div>
+                <div class="session-card bg-white rounded-xl p-8 shadow-md transition-all duration-300 hover:border-indigo-500 border border-transparent">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-child text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Family Therapy</h3>
+                    <p class="text-gray-600 mb-5">
+                        Address family dynamics, improve relationships, and create a healthier home environment with professional guidance.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Improve family dynamics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">Parenting guidance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-gray-600">75-90 minute sessions</span>
+                        </li>
+                    </ul>
+                    <a href="#booking" class="text-indigo-600 font-medium inline-flex items-center group">
+                        Book Now
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-200"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 transparent">Session Pricing</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 text-center">
+                        <h3 class="text-xl font-bold text-gray-800">Individual Session</h3>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="text-4xl font-bold text-indigo-600 mb-2">$80</div>
+                        <div class="text-gray-500 mb-6">per 50-minute session</div>
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Personalized therapy</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Evidence-based approach</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Confidential environment</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                <span>Couples therapy</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                <span>Family sessions</span>
+                            </li>
+                        </ul>
+                        <a href="#booking" class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition duration-300">
+                            Book Session
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden border-2 border-indigo-500 transform scale-105 z-10">
+                    <div class="bg-indigo-600 px-6 py-4 text-center">
+                        <h3 class="text-xl font-bold text-white">Couples Counseling</h3>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="text-4xl font-bold text-indigo-600 mb-2">$120</div>
+                        <div class="text-gray-500 mb-6">per 60-minute session</div>
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Relationship counseling</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Conflict resolution</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Communication skills</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                <span>Family sessions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Personalized approach</span>
+                            </li>
+                        </ul>
+                        <a href="#booking" class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition duration-300">
+                            Book Session
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 text-center">
+                        <h3 class="text-xl font-bold text-gray-800">Family Therapy</h3>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="text-4xl font-bold text-indigo-600 mb-2">$150</div>
+                        <div class="text-gray-500 mb-6">per 75-minute session</div>
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Whole family support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Parenting guidance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Improved communication</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Conflict resolution</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Holistic approach</span>
+                            </li>
+                        </ul>
+                        <a href="#booking" class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition duration-300">
+                            Book Session
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Looking for a package deal?</p>
+                <a href="#contact" class="text-indigo-600 font-medium hover:underline">Contact us for discounted package rates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Hear what our clients have to say about their counseling experience with Dr. Amany Salama.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" 
+                             alt="Sarah M." 
+                             class="w-16 h-16 rounded-full object-cover border-4 border-indigo-100">
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah M.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Dr. Salama changed my life. Through our sessions, I've learned healthy coping mechanisms and finally understand my anxiety. Her approach is gentle yet effective, and I always leave sessions feeling empowered."
+                    </p>
+                </div>
+                <div class="testimonial-card rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                             alt="Ahmed K." 
+                             class="w-16 h-16 rounded-full object-cover border-4 border-indigo-100">
+                        <div class="ml-4">
+                            <h4 class="font-bold">Ahmed K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The couples counseling with my wife was transformative. Dr. Salama helped us communicate better and understand each other's perspectives. We're now closer than we've been in years."
+                    </p>
+                </div>
+                <div class="testimonial-card rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" 
+                             alt="Layla T." 
+                             class="w-16 h-16 rounded-full object-cover border-4 border-indigo-100">
+                        <div class="ml-4">
+                            <h4 class="font-bold">Layla T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+Highly recommended!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 bg-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-indigo-600 p-8 text-white">
+                        <h2 class="text-3xl font-bold mb-6">Schedule Your Session</h2>
+                        <p class="mb-6 leading-relaxed">
+                            Ready to take the first step towards better mental health? Book your consultation with Dr. Amany Salama today.
+                        </p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-500 p-2 rounded-full mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Flexible Scheduling</h4>
+                                    <p>Morning, afternoon, and evening appointments available</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-indigo-500 p-2 rounded-full mr-4">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Online Sessions</h4>
+                                    <p>Secure video counseling from the comfort of your home</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-indigo-500 p-2 rounded-full mr-4">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Confidential</h4>
+                                    <p>100% privacy guaranteed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-700 rounded-lg p-4">
+                            <h4 class="font-bold mb-2">Need help choosing a service?</h4>
+                            <p>Contact us directly at <a href="mailto:info@dr-amany-salama.com" class="underline">info@dr-amany-salama.com</a></p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Book an Appointment</h3>
+                        <form id="booking-form" class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            </div>
+                            <div>
+                                <label for="service" class="block text-gray-700 mb-1">Service Type</label>
+                                <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="individual">Individual Therapy</option>
+                                    <option value="couples">Couples Counseling</option>
+                                    <option value="family">Family Therapy</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block text-gray-700 mb-1">Preferred Date</label>
+                                <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-1">Additional Information</label>
+                                <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition duration-300">
+                                Book Appointment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex justify-between items-center">
+                        <span class="font-medium text-gray-800">How do online sessions work?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 hidden text-gray-600">
+                        <p>Online sessions are conducted through a secure, HIPAA-compliant video conferencing platform. Before your scheduled session, you'll receive an email with a link to join the virtual meeting room. All you need is a device with a camera, microphone, and stable internet connection.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex justify-between items-center">
+                        <span class="font-medium text-gray-800">What is your cancellation policy?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 hidden text-gray-600">
+                        <p>We require at least 24 hours notice for appointment cancellations to avoid a cancellation fee. Cancellations made less than 24 hours before the scheduled appointment will be charged 50% of the session fee.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex justify-between items-center">
+                        <span class="font-medium text-gray-800">Do you accept insurance?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 hidden text-gray-600">
+                        <p>At this time, we do not accept insurance directly. However, we can provide you with a detailed receipt (superbill) that you may submit to your insurance company for possible out-of-network reimbursement. We recommend contacting your insurance provider to understand your mental health coverage.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex justify-between items-center">
+                        <span class="font-medium text-gray-800">How many sessions will I need?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 hidden text-gray-600">
+                        <p>The number of sessions varies depending on your individual needs and goals. Some clients see significant improvement in 6-8 sessions, while others may benefit from longer-term therapy. This will be discussed during your initial consultation, and we'll continually reassess progress together.</p>
+                    </div>
+                </div>
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 flex justify-between items-center">
+                        <span class="font-medium text-gray-800">Is therapy confidential?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 hidden text-gray-600">
+                        <p>Yes, confidentiality is a cornerstone of therapy. What you discuss in sessions will not be shared with anyone without your written permission, except in very specific situations required by law (such as if there is an imminent risk of harm to yourself or others).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Have questions? Reach out to us directly. We're here to help.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">info@dr-amany-salama.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
+                                <p class="text-gray-600">+20 123 456 7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-clock text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Working Hours</h4>
+                                <p class="text-gray-600">Sunday - Thursday: 9am - 8pm<br>Friday: 9am - 3pm<br>Saturday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h4 class="font-bold text-gray-800 mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 hover:bg-indigo-100 p-3 rounded-full text-gray-700 hover:text-indigo-600 transition-colors duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-indigo-100 p-3 rounded-full text-gray-700 hover:text-indigo-600 transition-colors duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-indigo-100 p-3 rounded-full text-gray-700 hover:text-indigo-600 transition-colors duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-indigo-100 p-3 rounded-full text-gray-700 hover:text-indigo-600 transition-colors duration-300">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+                    <form id="contact-form" class="space-y-5">
+                        <div>
+                            <label for="contact-name" class="block text-gray-700 mb-1">Name</label>
+                            <input type="text" id="contact-name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="contact-email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="contact-subject" class="block text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-gray-700 mb-1">Message</label>
+                            <textarea id="contact-message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center space-x-2 mb-6">
+                        <div class="bg-indigo-600 text-white p-2 rounded-lg">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="text-xl font-bold">Dr. Amany Salama</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        Professional psychological counseling services to help you navigate life's challenges and improve your mental well-being.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-300">Services</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#booking" class="text-gray-400 hover:text-white transition-colors duration-300">Book Session</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Individual Therapy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Couples Counseling</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Family Therapy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Anxiety Treatment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Depression Counseling</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Info</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>123 Psychological Street, Cairo, Egypt</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3"></i>
+                            <span>+20 123 456 7890</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>info@dr-amany-salama.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock mt-1 mr-3"></i>
+                            <span>Sun-Thu: 9am - 8pm<br>Fri: 9am - 3pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Dr. Amany Salama - Psychological Counseling. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-opacity duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 invisible transition-opacity duration-300">
+        <div class="bg-white rounded-xl p-8 max-w-md mx-4 text-center">
+            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-500 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Thank You!</h3>
+            <p class="text-gray-600 mb-6">Your appointment has been successfully booked. We've sent a confirmation to your email.</p>
+            <button id="close-modal" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = 'en';
+        
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            const body = document.body;
+            
+            // Update language buttons
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+            
+            // Update text direction and alignment
+            if (lang === 'ar') {
+                body.classList.add('rtl');
+                body.classList.remove('ltr');
+                body.style.fontFamily = 'Arial, sans-serif';
+            } else {
+                body.classList.add('ltr');
+                body.classList.remove('rtl');
+                body.style.fontFamily = '';
+            }
+            
+            // Update all translatable elements
+            const elements = document.querySelectorAll('[data-en][data-ar]');
+            elements.forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form submission
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('opacity-0', 'invisible');
+            modal.classList.add('opacity-100', 'visible');
+            this.reset();
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const modal = document.getElementById('success-modal');
+            const modalText = modal.querySelector('p');
+            modalText.textContent = "Your message has been successfully sent. We'll get back to you soon.";
+            modal.classList.remove('opacity-0', 'invisible');
+            modal.classList.add('opacity-100', 'visible');
+            this.reset();
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('opacity-100', 'visible');
+            modal.classList.add('opacity-0', 'invisible');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+                        "As a busy professional, I appreciate the flexibility of online sessions. Dr. Salama's insights have helped me manage work stress and improve my personal relationships.
